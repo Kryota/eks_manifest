@@ -1,0 +1,34 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: eks-handson
+  region: ap-northeast-1
+
+nodeGroups:
+  # $ eksctl create nodegroup -f node-group-config.yml
+  # $ eksctl drain nodegroup eks-handson-green --cluster eks-handson
+  # $ eksctl delete nodegroup eks-handson-green --cluster eks-handson
+  - name: eks-handson-blue
+    instanceType: t2.medium
+    privateNetworking: true
+    desiredCapacity: 2
+    minSize: 2
+    maxSize: 4
+    iam:
+      withAddonPolicies:
+        albIngress: true
+  # $ eksctl create nodegroup -f node-group-config.yml
+  # $ eksctl drain nodegroup eks-handson-blue --cluster eks-handson
+  # $ eksctl delete nodegroup eks-handson-blue --cluster eks-handson
+  # - name: eks-handson-green
+  #   instanceType: t2.medium
+  #   privateNetworking: true
+  #   desiredCapacity: 2
+  #   minSize: 2
+  #   maxSize: 4
+  #   iam:
+  #     withAddonPolicies:
+  #       albIngress: true
+
+availabilityZones: ["ap-northeast-1a", "ap-northeast-1c"]
