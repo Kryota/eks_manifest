@@ -1,0 +1,9 @@
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: eks-handson-go
+spec:
+  maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: eks-handson-go

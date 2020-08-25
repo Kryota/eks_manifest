@@ -30,10 +30,8 @@ spec:
             port: 8080
           initialDelaySeconds: 5
           periodSeconds: 5
-        livenessProbe:
-          httpGet:
-            path: /hello
-            port: 8080
-          initialDelaySeconds: 5
-          periodSeconds: 5
-          # terminationGracePeriodSeconds: 30
+      #   lifecycle:
+      #     preStop:
+      #       exec:
+      #         command: ["/bin/sh", "-c", "sleep 20"]
+      # terminationGracePeriodSeconds: 30
